@@ -1,0 +1,20 @@
+[build]
+publish = "public"
+command = "hugo --gc --minify"
+
+[context.production.environment]
+HUGO_VERSION = "0.83.1"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
+
+[[redirects]]
+  from = "https://flutterdata.dev/docs/"
+  to = "https://flutterdata.dev/docs/quickstart"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://flutterdata.dev/docs/"
+  to = "https://flutterdata.dev/tutorial/fetching"
+  status = 301
+  force = true

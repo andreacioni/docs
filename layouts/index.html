@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Flutter Data</title>
+
+    <link rel="stylesheet" href="/main.css" />
+
+    <link rel="stylesheet" href="/css/fonts.css" data>
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+  </head>
+
+  <body>
+    <header class="bg-original-gray">
+      <div class="max-w-6xl mx-auto pl-2 pr-4 md:pl-4 md:pr-6">
+        <div class="flex items-center h-16">
+          <div class="flex items-center py-2 -mt-6" style="width: 280px;">
+            <h1 class="whitespace-no-wrap">
+              <span class="text-white cursor-default">
+                <img class="inline" style="width: 36px; height: 36px;" src="/images/fd.png">
+                <span class="align-middle text-2xl mb-4 font-bold tracking-tighter">Flutter Data</span></span>
+            </h1>
+          </div>
+
+          <div>
+            <a class="{{if eq .Section "docs" }}active {{ end }}no-underline focus:outline-none focus-visible:shadow-outline mr-5 lg:mr-7 px-1 font-medium text-white hover:text-gray-600"
+              href="/docs/">Docs</a>
+
+            <!-- <a class="{{if eq .Section "tutorial" }}active {{ end }}no-underline focus:outline-none focus-visible:shadow-outline mr-5 lg:mr-7 px-1 font-medium text-white hover:text-gray-600"
+              href="/tutorial/">Tutorial</a> -->
+
+            <a class="{{if eq .Section "articles" }}active {{ end }}no-underline focus:outline-none focus-visible:shadow-outline mr-5 lg:mr-7 px-1 font-medium text-white hover:text-gray-600"
+              href="/articles/">Articles</a>
+          </div>
+
+          <div class="hidden md:flex md:items-center md:ml-auto">
+            <a class="no-underline focus:outline-none focus-visible:shadow-outline w-24 mr-5 lg:mr-7 px-1 font-medium text-gray-400 hover:text-gray-600"
+              href="https://pub.dev/packages/flutter_data/"><strong>v{{- partial "latest" -}}</strong></a>
+            <a href="https://twitter.com/flutterdata"
+              class="focus:outline-none focus-visible:shadow-outline px-1 mr-5 text-gray-400 hover:text-gray-600"><svg
+                class="h-5 fill-current" viewBox="0 0 20 20">
+                <title>Twitter</title>
+                <path
+                  d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84">
+                </path>
+              </svg></a><a href="https://github.com/flutterdata/flutter_data"
+              class="focus:outline-none focus-visible:shadow-outline px-1 text-gray-400 hover:text-gray-600"><svg
+                viewBox="0 0 20 20" class="h-5 fill-current">
+                <title>GitHub</title>
+                <path
+                  d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0">
+                </path>
+              </svg></a></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-original-gray py-8">
+      <div class="w-full max-w-screen-xl relative mx-auto px-6 pt-2 xl:pb-16">
+        <div class="xl:flex -mx-6">
+          <div class="px-6 text-center max-w-2xl md:max-w-3xl mx-auto">
+            <h1 class="text-white text-5xl leading-snug">
+              Persistent reactive models in Flutter. With zero boilerplate.
+            </h1>
+            <h2 class="mt-6 leading-relaxed text-xl text-gray-400 font-medium">
+              Flutter Data is an offline-first data framework that gives you a
+              configurable REST client and powerful model relationships.
+            </h2>
+            <div class="flex flex-col mt-8 md:mt-10 sm:flex-row sm:justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <!-- <a class="flex items-center justify-center px-4 py-8 text-base text-center font-bold text-white bg-green-500 rounded hover:bg-green-600 md:py-2 sm:w-1/2 md:w-auto no-underline"
+                href="/tutorial/">Watch the short tutorial</a> -->
+                <a class="flex items-center justify-center px-4 py-8 text-base text-center text-white rounded md:py-2 sm:w-1/2 md:w-auto no-underline"
+                href="/docs/">Access the docs &rarr;</a>
+            </div>
+          </div>
+          <div class="mt-12 xl:mt-0 px-6 flex-shrink-0 hidden md:block">
+            <div class="mx-auto text-center"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="waves w-full bg-cover bg-top bg-s h-56 -mt-4 -ml-1"></div>
+
+    <section class="mb-16 -mt-48">
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-3xl font-bold text-center">Apps using Flutter Data</h3>
+        <div class="grid gap-8 grid-cols-1">
+          <div>
+            <img src="/images/apps.jpg">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-32 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-3xl font-bold text-center mb-8 -mt-16">Features 🚀</h3>
+        <div class="grid gap-8 grid-cols-2 text-gray-800">
+          <div>
+            <span class="text-xl font-bold">Repositories for all models</span>
+            <ul>
+              <li>CRUD and custom remote endpoints</li>
+              <li><a href="https://pub.dev/packages/state_notifier">StateNotifier</a> watcher APIs</li>
+            </ul>
+          </div>
+          <div>
+            <span class="text-xl font-bold">Built for offline-first</span>
+            <ul>
+              <li><a href="https://docs.hivedb.dev/">Hive</a>-based local storage at its core</li>
+              <li>Failure handling & retry API</li>
+            </ul>
+          </div>
+          <div>
+            <span class="text-xl font-bold">Intuitive APIs, effortless setup</span>
+            <ul>
+              <li>Truly configurable and composable via Dart mixins and codegen</li>
+              <li>Built-in <a href="https://riverpod.dev/">Riverpod</a> providers for all models</li>
+            </ul>
+          </div>
+          <div>
+            <span class="text-xl font-bold">Exceptional relationship support</span>
+            <ul>
+              <li>Automatically synchronized, fully traversable relationship graph</li>
+              <li>Reactive relationships</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16 bg-original-gray pattern text-white pb-20 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-3xl text-white">Working on a Flutter app that talks to an API
+          server?</h3>
+        <p>You want to fetch data from a REST API, serialize it, store it for offline use and hook it up with your state
+          management solution – all that for 20+ interconnected models in your app.</p>
+        <p>Trying to make this work with http/Chopper/Firebase, json_serializable, ad-hoc caching, Riverpod wiring up,
+          custom loading/error states (not to mention sync’ing with local storage, Hive or SQLite)...
+        </p>
+        <p>
+          <strong>PAIN 😫</strong>
+        </p>
+        <h4 class="text-white tracking-normal">But what if you could get it all working smoothly with minimal effort?</h4>
+      </div>
+    </section>
+
+    <section class="mb-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-3xl font-bold text-center mb-4">Compatibility</h3>
+        <p class="mb-4">Fully compatible with the tools we know and love:</p>
+
+        <table class="table-fixed">
+          <thead>
+            <tr>
+              <th class="w-4/12"></th>
+              <th class="w-1/12"></th>
+              <th class="w-7/12"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold px-4 py-2">Flutter</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">And pure Dart, too.</td>
+            </tr>
+            <tr class="bg-yellow-50">
+              <td class="font-bold px-4 py-2">Flutter Web</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Supported!</td>
+            </tr>
+            <tr>
+              <td class="font-bold px-4 py-2">json_serializable</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Fully supported (but not required)
+              </td>
+            </tr>
+            <tr class="bg-yellow-50">
+              <td class="font-bold px-4 py-2">Riverpod</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Supported & automatically wired up</td>
+            </tr>
+            <tr>
+              <td class="font-bold px-4 py-2">Provider</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Supported with minimal extra code</td>
+            </tr>
+            <tr class="bg-yellow-50">
+              <td class="font-bold px-4 py-2">get_it</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Supported with minimal extra code</td>
+            </tr>
+            <tr>
+              <td class="font-bold px-4 py-2">Classic JSON REST API</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Built-in support!</td>
+            </tr>
+            <tr class="bg-yellow-50">
+              <td class="font-bold px-4 py-2">JSON:API</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Supported via <a href="https://pub.dev/packages/flutter_data_json_api_adapter">external adapter</a></td>
+            </tr>
+            <tr>
+              <td class="font-bold px-4 py-2">Freezed</td>
+              <td class="px-4 py-2">✅</td>
+              <td class="px-4 py-2 text-sm">Supported!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="px-4 py-12 text-white bg-original-gray pattern leading-8">
+      <div class="max-w-3xl mx-auto">
+        <p>Dart Pub: <strong><a
+          href="https://pub.dev/packages/flutter_data">https://pub.dev/packages/flutter_data</a></strong>
+        <br>
+          Github: <strong><a
+              href="https://github.com/flutterdata/flutter_data">https://github.com/flutterdata/flutter_data</a></strong>
+        <br>
+        Twitter: <strong><a
+              href="https://twitter.com/flutterdata">https://twitter.com/flutterdata</a></strong></p>
+        <p>
+          Flutter Data is <a href="https://github.com/flutterdata/flutter_data/blob/master/LICENSE">licensed under
+            the MIT license</a>.
+        </p>
+        <p class="text-sm">
+          Created and maintained by <a href="https://github.com/frank06/">Frank Treacy</a>.
+        </p>
+        <h1 class="mt-2 whitespace-no-wrap">
+          <img class="inline" style="object-fit: cover;" src="/images/fd.png">
+        </h1>
+      </div>
+    </footer>
+  </body>
+
+</html>

@@ -1,0 +1,9 @@
+{{ if .Site.IsServer }}
+<h3>(here a dartpad)</h3>
+{{ else }}
+<br>
+<iframe class="w-full text-xl" style="{{ if isset .Params 2 }}height: {{index .Params 2}}px{{ end }}"
+  src="https://dartpad.dev/embed-flutter.html?id={{ index .Params 0 }}&split={{ if isset .Params 1 }}{{index .Params 1}}{{else}}80{{ end }}&theme=dark">
+</iframe>
+<br>
+{{ end }}

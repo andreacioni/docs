@@ -1,0 +1,27 @@
+{{ $pages := .Site.Pages.ByDate.Reverse }}
+
+<div class="flex flex-wrap">
+  {{ range $pages }}
+  {{ if eq .Type "articles" }}
+  <div class="w-full sm:w-1/2 lg:w-1/3 my-4">
+    <div class="mr-4 rounded overflow-hidden shadow-lg">
+      <a href="{{ .RelPermalink }}">
+        {{ if (fileExists (path.Join .File.Dir "featured-mini.jpg")) -}}
+        <img class="featured w-full" src="{{ .RelPermalink }}/featured-mini.jpg" alt="Featured">
+        {{else }}
+        <img class="featured w-full" src="/images/default.svg" alt="Featured">
+        {{ end }}
+      </a>
+      <div class="px-6 py-4">
+        <div class="text-xl font-bold mt-0 h-24">
+          {{ if .Site.IsServer }}
+          <strong>{{ if eq .Draft true }}[DRAFT]{{ end }}</strong>
+          {{ end }}
+          <a href="{{ .RelPermalink }}" class="text-flutter-dark-gray no-underline tracking-tight">{{ .Title }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+</div>

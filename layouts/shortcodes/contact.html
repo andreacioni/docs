@@ -1,0 +1,44 @@
+<form name="contact2" class="mt-6 w-full max-w-lg" method="POST" onsubmit="return window.submitContact(this, false)" netlify>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-900 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Name
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input name="name" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-flutter-blue" id="inline-full-name" type="text">
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-900 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-email">
+        E-mail
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input name="email" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-flutter-blue" id="inline-email" type="email" placeholder="your@email.net">
+    </div>
+  </div>
+  <div class="md:flex mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-900 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-body">
+        Message
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <textarea name="body" class="h-64 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-flutter-blue" id="inline-body"></textarea>
+    </div>
+  </div>
+  <div class="md:flex md:items-center">
+    <div class="md:w-1/3"></div>
+    <div class="md:w-2/3">
+      <input type="submit" class="shadow bg-flutter-blue hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" value="Send message">
+    </div>
+  </div>
+  <div class="form-success hidden">
+    <p class="text-left text-green-800 text-lg font-bold">Message sent. Thank you! We will get back to you shortly.</p>
+  </div>
+  <div class="form-error hidden">
+    <p class="text-left text-red-800 text-lg font-bold">An error has occurred. Please e-mail me@frank06.net with your request.</p>
+  </div>
+</form>

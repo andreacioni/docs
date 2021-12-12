@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="bg-white antialiased" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {{ if .Params.description }}
+  <meta name="description" content="{{.Params.description}}" />
+  {{ end }}
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  {{ if .Params.description }}
+  <meta name="twitter:description" content="{{ .Params.description }}" />
+  {{ end }}
+
+  {{ if .Title}}
+  <meta name="twitter:title" content="{{ .Title }}" />
+  {{ end }}
+
+  {{ if .Params.featuredImage }}
+  <meta name="twitter:image" content="{{.Permalink}}featured.jpg" />
+  {{ end }}
+
+  <title>{{ if .Title }}{{ if eq .Section "tutorial"}}Tutorial:{{ end }} {{ .Title }} - {{ end }}{{ .Site.Title }}
+  </title>
+
+  <link rel="stylesheet" href="/main.css" />
+  <link rel="stylesheet" href="/css/fonts.css" data>
+
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+</head>
+
+<body>
+  <div class="flex bg-white border-b border-gray-200 fixed top-0 inset-x-0 z-50 h-16 items-center">
+    <div class="w-full max-w-6xl relative mx-auto pl-2 pr-4 md:pl-4 md:pr-6">
+      <div class="flex items-center -mx-6">
+        <div class="lg:w-1/4 pl-6 pr-4 sm:pr-12 lg:pr-8">
+          <div class="flex items-center">
+            <h1 class="mt-2 whitespace-no-wrap">
+              <a class="no-underline text-gray-800" href="/">
+                <img class="inline-block" style="object-fit: cover; width: 36px; height: 36px;" src="/images/fd.png">
+                <span class="hidden sm:inline align-middle text-2xl mb-4 font-bold tracking-tighter">Flutter
+                  Data</span></a>
+            </h1>
+          </div>
+        </div>
+        <div class="flex flex-grow min-w-0 lg:w-3/4">
+          <div class="w-full lg:px-2">
+            <ul class="flex flex-row">
+              <li class="inline-block">
+                <a class="no-underline focus:outline-none focus-visible:shadow-outline mr-5 lg:mr-7 px-1 text-gray-700 hover:text-gray-900
+                  {{if eq .Section "docs" }}active {{ end }}" href="/docs/">Docs</a>
+              </li>
+              <li class="inline-block">
+                <!-- <a class="no-underline focus:outline-none focus-visible:shadow-outline mr-5 lg:mr-7 px-1 text-gray-700 hover:text-gray-900
+                  {{if eq .Section "tutorial" }}active {{ end }}
+                  " href="/tutorial/">Tutorial</a> -->
+              </li>
+              <li class="inline-block">
+                <a class="no-underline focus:outline-none focus-visible:shadow-outline mr-5 lg:mr-7 px-1 text-gray-700 hover:text-gray-900
+                  {{if eq .Section "articles" }}active {{ end }}
+                  " href="/articles/">Articles</a>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" id="sidebar-open"
+            class="flex px-6 items-center lg:hidden bg-white text-gray-500 focus:outline-none focus:text-gray-700"><svg
+              class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+          </button>
+          <button type="button" id="sidebar-close"
+            class="flex px-6 items-center lg:hidden bg-white text-gray-500 focus:outline-none focus:text-gray-700 hidden"><svg
+              class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path
+                d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z">
+              </path>
+            </svg>
+          </button>
+
+          <div class="hidden lg:flex lg:items-center lg:justify-between px-6">
+            <div class="flex justify-start items-center text-gray-500">
+              <a class="no-underline focus:outline-none focus-visible:shadow-outline w-24 mr-5 lg:mr-7 px-1 font-medium text-gray-600 hover:text-gray-900"
+                href="https://pub.dev/packages/flutter_data/"><strong>v{{- partial "latest" -}}</strong></a>
+              <a href="https://twitter.com/flutterdata"
+                class="focus:outline-none focus-visible:shadow-outline px-1 mr-5 text-gray-600 hover:text-gray-900"><svg
+                  class="h-5 fill-current" viewBox="0 0 20 20">
+                  <title>Twitter</title>
+                  <path
+                    d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84">
+                  </path>
+                </svg>
+              </a>
+              <a href="https://github.com/flutterdata/flutter_data"
+                class="focus:outline-none focus-visible:shadow-outline px-1 text-gray-600 hover:text-gray-900"><svg
+                  viewBox="0 0 20 20" class="h-5 fill-current">
+                  <title>GitHub</title>
+                  <path
+                    d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0">
+                  </path>
+                </svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="w-full max-w-6xl mx-auto px-3 lg:flex">
+    {{if ne .Section "articles" }}
+    <div id="sidebar"
+      class="fixed inset-0 h-full bg-white z-40 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 pt-16 hidden">
+      <div
+        class="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:sticky lg:bg-transparent overflow-hidden lg:top-0 bg-white">
+        <nav class="pl-2 pr-6 overflow-y-auto text-base lg:text-md lg:py-20">
+          <p class="lg:hidden">v{{- partial "latest" -}}</p>
+          {{if eq .Section "articles" }}
+          {{ partial "toc.html" . }}
+          {{ else }}
+          <ul class="list-none">
+            {{ $currentPage := . }}
+            {{ $currentMenu := .Site.Menus.docs }}
+            {{ $currentMenuName := "docs" }}
+            {{ if eq .Section "tutorial" }}
+            {{ $currentMenu = .Site.Menus.tutorial }}
+            {{ $currentMenuName = "tutorial" }}
+            {{ end }}
+
+            {{ range $currentMenu }}
+            {{ $hasActive := $currentPage.HasMenuCurrent $currentMenuName . }}
+            {{ $isActive := $currentPage.IsMenuCurrent $currentMenuName . }}
+
+            <li class="mt-2 {{ if or $hasActive $isActive }}active{{ end }}">
+              <a href="{{ .URL }}">
+                {{ .Pre }}
+                <span>{{ .Name }}</span>
+              </a>
+              {{ if .HasChildren }}
+              <ul class="list-none">
+                {{ range .Children }}
+                {{ $isActive = $currentPage.IsMenuCurrent $currentMenuName . }}
+                <li class="ml-4 mt-2 {{ if $isActive }}active{{ end }}">
+                  <a href="{{ .URL }}">{{ .Name }}</a>
+                  {{ if $isActive }}
+                  <div class="ml-2">
+                    {{- .Page.TableOfContents -}}
+                  </div>
+                  {{ end }}
+                </li>
+                {{ end }}
+              </ul>
+              {{else}}
+              {{ if $isActive }}
+              <div class="ml-2">
+                {{- .Page.TableOfContents -}}
+              </div>
+              {{ end }}
+              {{end}}
+            </li>
+            {{ end }}
+            <li class="mt-8"></li>
+            <li class="mt-2"><a href="https://pub.dev/documentation/flutter_data/latest/">API Reference
+                (v{{partial "latest" .}})</a></li>
+          </ul>
+          {{ end }}
+        </nav>
+      </div>
+    </div>
+    {{ end }}
+    <div id="wrapper" class="min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:pr-6 pt-20 lg:w-3/4">
+      <div class="w-full">
+        {{block "main" .}}{{ end }}
+      </div>
+    </div>
+    {{if eq .Section "articles" }}
+    <div id="sidebar"
+      class="fixed inset-0 h-full bg-white z-40 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 pt-16 hidden">
+      <div
+        class="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:sticky lg:bg-transparent overflow-hidden lg:top-0 bg-white">
+        <nav class="sticky inset-0 h-screen lg:pt-16 px-6 overflow-y-scroll leading-snug top-16">
+          {{ partial "toc.html" . }}
+        </nav>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <footer class="py-12 mt-20 text-white bg-gray-900 pattern">
+    <div class="w-full max-w-6xl relative mx-auto pl-2 pr-4 md:pl-4 md:pr-6">
+      <div class="flex items-center">
+        <div class="lg:w-1/4 pl-6 pr-4 sm:pr-12 lg:pr-8">
+        </div>
+        <div class="flex flex-grow min-w-0 lg:w-3/4">
+          <div class="w-full lg:px-2">
+            <p>
+              Flutter Data is <a href="https://github.com/flutterdata/flutter_data/blob/master/LICENSE">licensed under
+                the MIT license</a>.
+            </p>
+            <p class="text-sm">
+              Created and maintained by <a href="https://github.com/frank06/">Frank Treacy</a>.
+            </p>
+          </div>
+          <div class="hidden lg:flex lg:items-center lg:justify-between px-6">
+            <h1 class="mt-2 whitespace-no-wrap">
+              <img class="inline" style="object-fit: cover; width: 100%;" src="/images/fd.png">
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const _open = function () {
+      document.getElementById('sidebar').classList.remove('hidden');
+      document.getElementById('wrapper').classList.add('overflow-hidden', 'max-h-screen', 'fixed');
+
+      document.getElementById('sidebar-open').classList.toggle('hidden');
+      document.getElementById('sidebar-close').classList.toggle('hidden');
+    };
+
+    const _close = function () {
+      document.getElementById('sidebar').classList.add('hidden');
+      document.getElementById('wrapper').classList.remove('overflow-hidden', 'max-h-screen', 'fixed');
+
+      document.getElementById('sidebar-open').classList.toggle('hidden');
+      document.getElementById('sidebar-close').classList.toggle('hidden');
+    };
+
+    document.getElementById('sidebar-open').onclick = _open;
+    document.getElementById('sidebar-close').onclick = _close;
+
+    [].forEach.call(document.querySelectorAll('a[href^="#"]'), element => {
+      element.onclick = _close;
+    });
+  </script>
+</body>
+
+</html>

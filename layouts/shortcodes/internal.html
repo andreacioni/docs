@@ -1,0 +1,8 @@
+{{ if .Site.IsServer }}
+  <div class="bg-yellow-100 p-6 mt-32">
+    <h3 class="text-center">Internal notes</h3>
+    <hr class="border-b-2 bg-gray-800">
+    {{ .Inner | markdownify }}
+  </div>
+  <hr>
+{{ end }}

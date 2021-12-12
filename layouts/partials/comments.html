@@ -1,0 +1,6 @@
+{{ if .Site.IsServer }}
+ <div class="text-2xl text-center p-8 bg-red-100">Comments go here</div>
+{{ else }}
+  <div id="commento"></div>
+  <script src="https://cdn.commento.io/js/commento.js"></script>
+{{ end }}

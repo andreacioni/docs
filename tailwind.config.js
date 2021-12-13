@@ -22,7 +22,16 @@ module.exports = {
     extend: {
       colors: {
         "yellow-50": "#fdfdea",
-        "original-gray": "#1A202C"
+        "original-gray": "#1A202C",
+        flutter: {
+          "lighter-blue": "#B9E3FF",
+          "light-blue": "#7EDCFC",
+          blue: "#0099FF",
+          "dark-blue": "#0062A3",
+          gray: "#433E4B",
+          "dark-gray": "#2E2937",
+          yellow: "#FFF0B1",
+        },
       },
     },
   },

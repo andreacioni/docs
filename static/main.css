@@ -1050,6 +1050,16 @@ video {
   border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 }
 
+.border-flutter-dark-blue {
+  --tw-border-opacity: 1;
+  border-color: rgba(0, 98, 163, var(--tw-border-opacity));
+}
+
+.bg-original-gray {
+  --tw-bg-opacity: 1;
+  background-color: rgba(26, 32, 44, var(--tw-bg-opacity));
+}
+
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
@@ -1070,9 +1080,19 @@ video {
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
 }
 
+.bg-flutter-lighter-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgba(185, 227, 255, var(--tw-bg-opacity));
+}
+
 .bg-red-100 {
   --tw-bg-opacity: 1;
   background-color: rgba(254, 226, 226, var(--tw-bg-opacity));
+}
+
+.bg-flutter-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 153, 255, var(--tw-bg-opacity));
 }
 
 .bg-gray-200 {
@@ -1090,9 +1110,9 @@ video {
   background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
 }
 
-.bg-original-gray {
+.bg-flutter-yellow {
   --tw-bg-opacity: 1;
-  background-color: rgba(26, 32, 44, var(--tw-bg-opacity));
+  background-color: rgba(255, 240, 177, var(--tw-bg-opacity));
 }
 
 .bg-cover {
@@ -1217,9 +1237,9 @@ video {
   line-height: 2rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .text-xl {
@@ -1242,14 +1262,14 @@ video {
   line-height: 1.25rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .font-bold {
@@ -1264,8 +1284,8 @@ video {
   text-transform: uppercase;
 }
 
-.leading-tight {
-  line-height: 1.25;
+.leading-snug {
+  line-height: 1.375;
 }
 
 .leading-relaxed {
@@ -1276,16 +1296,8 @@ video {
   line-height: 2rem;
 }
 
-.leading-snug {
-  line-height: 1.375;
-}
-
-.leading-loose {
-  line-height: 2;
-}
-
-.leading-5 {
-  line-height: 1.25rem;
+.leading-tight {
+  line-height: 1.25;
 }
 
 .tracking-tighter {
@@ -1314,11 +1326,6 @@ video {
   color: rgba(156, 163, 175, var(--tw-text-opacity));
 }
 
-.text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgba(107, 114, 128, var(--tw-text-opacity));
-}
-
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgba(31, 41, 55, var(--tw-text-opacity));
@@ -1329,9 +1336,19 @@ video {
   color: rgba(55, 65, 81, var(--tw-text-opacity));
 }
 
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
+}
+
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgba(75, 85, 99, var(--tw-text-opacity));
+}
+
+.text-flutter-dark-gray {
+  --tw-text-opacity: 1;
+  color: rgba(46, 41, 55, var(--tw-text-opacity));
 }
 
 .text-green-800 {
@@ -1347,21 +1364,6 @@ video {
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgba(17, 24, 39, var(--tw-text-opacity));
-}
-
-.text-gray-100 {
-  --tw-text-opacity: 1;
-  color: rgba(243, 244, 246, var(--tw-text-opacity));
-}
-
-.text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgba(209, 213, 219, var(--tw-text-opacity));
-}
-
-.text-gray-200 {
-  --tw-text-opacity: 1;
-  color: rgba(229, 231, 235, var(--tw-text-opacity));
 }
 
 .underline {
@@ -2012,6 +2014,11 @@ pre.chroma code {
   color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 
+.focus\:border-flutter-blue:focus {
+  --tw-border-opacity: 1;
+  border-color: rgba(0, 153, 255, var(--tw-border-opacity));
+}
+
 .focus\:bg-white:focus {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
@@ -2127,10 +2134,6 @@ pre.chroma code {
 
   .md\:pr-6 {
     padding-right: 1.5rem;
-  }
-
-  .md\:text-center {
-    text-align: center;
   }
 
   .md\:text-right {
@@ -2262,18 +2265,5 @@ pre.chroma code {
 
   .xl\:pb-16 {
     padding-bottom: 4rem;
-  }
-
-  .xl\:text-left {
-    text-align: left;
-  }
-
-  .xl\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
-  .xl\:leading-snug {
-    line-height: 1.375;
   }
 }

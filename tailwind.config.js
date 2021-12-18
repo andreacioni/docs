@@ -1,6 +1,5 @@
 module.exports = {
-  mode: "jit",
-  purge: ["./content/**/*.md", "./content/**/*.html", "./layouts/**/*.html"],
+  content: ["./content/**/*.md", "./content/**/*.html", "./layouts/**/*.html"],
     theme: {
     fontFamily: {
       sans: [

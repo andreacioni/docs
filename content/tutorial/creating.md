@@ -1,121 +1,58 @@
 ---
 title: Creating a new task
-weight: 30
+weight: 20
 menu: tutorial
-draft: true
 ---
 
-In a `FloatingActionButton` callback, we instantiate a new `Todo` model with a totally random title and save it:
+Let's add a `TextField` and turn the input into a new `Task`. This time around we initialize the model via [`init`](/docs/models#init) (passing a Riverpod `ref.read`) and immediately saving it.
 
-```dart {hl_lines=[3]}
-floatingActionButton: FloatingActionButton(
-  onPressed: () {
-    Todo(title: "Task number ${Random().nextInt(9999)}").save();
-  },
-  child: Icon(Icons.add),
-),
-```
-
-(This goes in our app's `Scaffold`!)
-
-![](01c.png)
-
-Done!
-
-Clicking that button sends a request in the background to `POST https://my-json-server.typicode.com/flutterdata/demo/todos`
-
-But... why can't we see this new `Todo` in the list?!
-
-### ⚡️ Reactivity to the rescue
-
-It's not there because we used a `FutureBuilder` which fetches the list just **once**.
-
-The solution is making the list reactive – in other words, using `watchAll()`. Instead of returning a `Future`, it returns a specific [`StateNotifier`](https://pub.dev/packages/state_notifier):
-
-```dart {hl_lines=[5 6 7 8 13 17]}
-class TodoScreen extends StatelessWidget {
+```dart {hl_lines=[5 "12-18"]}
+class TasksScreen extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final repository = context.watch<Repository<Todo>>();
-    return DataStateBuilder<List<Todo>>(
-      notifier: () => repository.watchAll(params: {'userId': '1', '_limit': '5'}),
-      builder: (context, state, notifier, _) {
-        if (state.isLoading) {
-          return Center(child: const CircularProgressIndicator());
-        }
-        return ListView.separated(
-          itemBuilder: (context, i) {
-            final todo = state.model[i];
-            return Text(
-                '${todo.completed ? "✅" : "◻️"} [id: ${todo.id}] ${todo.title}');
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.tasks.watchAll();
+    final _newTaskController = useTextEditingController();
+
+    if (state.isLoading) {
+      return CircularProgressIndicator();
+    }
+    return ListView(
+      children: [
+        TextField(
+          controller: _newTaskController,
+          onSubmitted: (value) async {
+            Task(title: value).init(ref.read).save();
+            _newTaskController.clear();
           },
-          itemCount: state.model.length,
-          separatorBuilder: (context, i) => Divider(),
-          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-        );
-      },
+        ),
+        for (final task in state.model)
+          ListTile(
+            leading: Checkbox(
+              value: task.completed,
+              onChanged: (value) => task.toggleCompleted().save(),
+            ),
+            title: Text('${task.title} [id: ${task.id}]'),
+          ),
+      ],
     );
   }
 }
 ```
 
-What went on here?
+Remember to import `flutter_hooks`!
 
-We are using `DataStateBuilder` (pretty much like a `ValueListenableBuilder`) to access [`DataState`](https://pub.dev/packages/data_state) objects. They give us:
+Hot-reloading once again we see our `TextField` ready to create new tasks:
 
-- loading state (`state.isLoading`)
-- error state (`state.hasException` and `state.exception`)
-- data state (`state.model`)
+{{< iphone "../w4.gif" >}}
 
-Add [flutter_data_state](https://pub.dev/packages/flutter_data_state) to your `pubspec.yaml` to install and **restart** the app!
+It was that easy!
 
-Creating a new TO-DO _will_ now show up:
+{{< notice >}}
+You may have noticed that there was a flash with `[id: null]` (we didn't supply any ID upon model creation), until the server responds with one (in this case `11`) triggering an update.
 
-Before, with an `id=null` (temporary model which hasn't been persisted):
+Be aware that our [dummy JSON backend](https://my-json-server.typicode.com/flutterdata/demo) does not actually save new resources so **it will always respond with ID `11`**, causing a confusing situation if you keep adding tasks!
 
-![](02a.png)
+Finally, remember to check out the debug console where you can find some Flutter Data activity logs!
+{{< /notice >}}
 
-After, with an `id=201` that was assigned by the API server:
-
-![](02b.png)
-
-Notice that we passed a `_limit=5` query param, so we only got 5 items!
-
-The new `Todo` appeared because `watchAll()` reflects the current **local storage** state. (As a matter of fact, JSON Placeholder does not actually persist anything!)
-
-Models are fetched from the network _in the background_ by default. This strategy can be changed by overriding methods in a [custom adapter](/repository/adapters).
-
-### ⛲️ Prefer a Stream API?
-
-No problem. If you don't like `DataState` or `StateNotifier` you can totally bypass them and use good ol' streams:
-
-```dart {hl_lines=[5 6 7 8 13 17]}
-class TodoScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final repository = context.watch<Repository<Todo>>();
-    return StreamBuilder<List<Todo>>(
-      stream: repository.watchAll(params: {'userId': '1', '_limit': '5'}).stream,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Center(child: const CircularProgressIndicator());
-        }
-        return ListView.separated(
-          itemBuilder: (context, i) {
-            final todo = snapshot.data[i];
-            return Text(
-                '${todo.completed ? "✅" : "◻️"} [id: ${todo.id}] ${todo.title}');
-          },
-          itemCount: snapshot.data.length,
-          separatorBuilder: (context, i) => Divider(),
-          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-        );
-      },
-    );
-  }
-}
-```
-
-Just call `watchAll().stream`.
-
-**Check out the app's full source code: https://github.com/flutterdata/flutter_data_todos**
+**NEXT: [Reloading the list](/tutorial/reloading)**

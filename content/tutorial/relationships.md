@@ -153,5 +153,5 @@ mixin JSONPlaceholderAdapter<T extends DataModel<T>>
 And it works both ways now!
 
 {{< notice >}}
-**Check out the source code: https://github.com/flutterdata/flutter_data_todos**
+**Check out the source code: https://github.com/flutterdata/tutorial**
 {{< /notice >}}

@@ -1,91 +1,88 @@
 ---
-title: Building the Tasks app
+title: Fetching tasks
 weight: 10
 menu: tutorial
-draft: true
 ---
 
-ADD INTRO AND EMBED YOUTUBE VIDEO
-
-Now that Flutter Data is ready to use, we have access to our `Repository<Task>` via Provider's `context.watch`.
-
 {{< notice >}}
-**Important:** Make sure you went through the **[quickstart](/docs/quickstart)** to get everything set up!
+**Before you continue:**
+
+Make sure you went through the **[Quickstart](/docs/quickstart)** and got Flutter Data up and running!
+
+Also, you can check out the full source code for this tutorial at **https://github.com/flutterdata/tutorial**
 {{< /notice >}}
 
-It's a REST client with CRUD actions that has a `findAll` method. We can start by displaying [JSON Placeholder](https://my-json-server.typicode.com/flutterdata/demo/) `User id=1`'s list of TO-DOs:
+We now have access to our `Repository<Task>` through `ref.tasks`, with an API base URL set to `https://my-json-server.typicode.com/flutterdata/demo/`.
 
-```dart {hl_lines=[4 6]}
-class TaskScreen extends StatelessWidget {
+Inspecting the `/tasks` endpoint we see:
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Laundry 🧺",
+    "completed": false,
+    "userId": 1
+  },
+  {
+    "id": 2,
+    "title": "Groceries 🛒",
+    "completed": true,
+    "userId": 1
+  },
+  {
+    "id": 3,
+    "title": "Reservation at Malloys",
+    "completed": true,
+    "userId": 1
+  },
+  // ...
+]
+```
+
+To bring these tasks into our app we'll use the `watchAll` method. (It internally makes a remote `findAll` call to `/tasks` and keeps watching local storage for any further changes in these models.)
+
+```dart {hl_lines=["10-20"]}
+class TasksApp extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final repository = context.watch<Repository<Task>>();
-    return FutureBuilder<List<Task>>(
-      future: repository.findAll(params: {'userId': '1'}),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Center(child: const CircularProgressIndicator());
-        }
-        return ListView.separated(
-          itemBuilder: (context, i) {
-            final task = snapshot.data[i];
-            return Text(
-                '${task.completed ? "✅" : "◻️"} [id: ${task.id}] ${task.title}');
-          },
-          itemCount: snapshot.data.length,
-          separatorBuilder: (context, i) => Divider(),
-          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: ref.watch(repositoryInitializerProvider()).when(
+            error: (error, _) => Text(error.toString()),
+            loading: () => const CircularProgressIndicator(),
+            data: (_) {
+              final state = ref.tasks.watchAll();
+              if (state.isLoading) {
+                return CircularProgressIndicator();
+              }
+              return ListView(
+                children: [
+                  for (final task in state.model) Text(task.title),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 ```
 
-and call it from `TaskApp`:
+Bam 💥!
 
-```dart {hl_lines=[5]}
-builder: (context) {
-  if (context.watch<DataManager>() == null) {
-    return const CircularProgressIndicator();
-  }
-  return TaskScreen();
-},
-```
+{{< iphone "../w1.png" >}}
 
-Bam!
+**Whoa,** how did that happen?
 
-![](01.png)
 
-**Whoa! Hold on, how did we get that magic to work?**
-
-Well, Flutter Data made an HTTP GET request on `https://my-json-server.typicode.com/flutterdata/demo/tasks?userId=1` because we requested to `findAll` `Task`s for a `User id=1`:
-
-- `https://my-json-server.typicode.com/flutterdata/demo/` was defined as `baseUrl` in the `JSONPlaceholderAdapter` mixin
-- `tasks` is the default endpoint for `findAll` which, of course, is [overridable](/repository#findall)
-- `userId=1` is the query parameter we supplied
+{{< notice >}}
+{{< partial "magic1.md" >}}
 
 For more information see the [Repository docs](/repository).
-
-{{< notice >}}
-Check out the full source code at **https://github.com/flutterdata/tutorial**
 {{</ notice >}}
 
-### Limit the amount of TO-DO items - OR MAYBE FILTER BY USER FIRST!
-
-Let's make the number of TO-DOs more manageable via the `_limit` query param:
-
-```dart
-  future: repository.findAll(params: {'userId': 1, '_limit': 5}),
-```
-
-_One hot-reload later..._
-
-![](01b.png)
-
-{{< notice >}}
-
-#### In case you were wondering...
-
-[Chopper](https://pub.dev/packages/chopper) and [Retrofit](https://pub.dev/packages/retrofit) are REST client generators. Flutter Data is a REST client generator, too, [but goes way beyond](/).
-{{</ notice >}}
+**NEXT: [Marking tasks as done](/tutorial/updating)**

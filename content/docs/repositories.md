@@ -38,27 +38,7 @@ This async call triggered an HTTP request to `GET http://base.url/tasks`.
 There are multiple ways to obtain a Repository: `ref.tasks` will work in a typical Flutter Riverpod app (essentially a shortcut to `ref.watch(tasksRepositoryProvider)`).
 
 {{< notice >}}
-
-#### Understanding the magic ✨
-
-**How exactly does Flutter Data resolve the `http://base.url/tasks` URL?**
-
-The `Repository` class depends on a `RemoteAdapter` which defines functions and getters such as `urlForFindAll`, `baseUrl` and `type` among many others. We can override these with an [adapter](/docs/adapters).
-
-**And, how exactly does Flutter Data instantiate `Task` models?**
-
-Flutter Data ships with a built-in serializer/deserializer for [classic JSON](https://api.rubyonrails.org/classes/ActiveModel/Serializers/JSON.html). It means that the default serialized form of a `Task` instance looks like:
-
-```json
-{
-  "id": 1,
-  "title": "delectus aut autem",
-  "completed": false
-}
-```
-
-Of course, this too can be overridden like the [JSON API Adapter](https://github.com/flutterdata/flutter_data_json_api_adapter/) does.
-
+  {{< partial "magic1.md" >}}
 {{< /notice >}}
 
 We can include query parameters (in this case used for pagination and resource inclusion):

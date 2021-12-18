@@ -134,25 +134,26 @@ import 'package:tutorial/main.data.dart';
 void main() {
   runApp(
     ProviderScope(
-      child: MyApp(),
+      child: TasksApp(),
       overrides: [configureRepositoryLocalStorage()],
     ),
   );
 }
 
-class MyApp extends HookWidget {
+class TasksApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       home: Scaffold(
-          body: Center(
-            child: ref.watch(repositoryInitializerProvider()).when(
-                  error: (error, _) => Text(error.toString()),
-                  loading: () => const CircularProgressIndicator(),
-                  data: (_) => 'Hello from Flutter Data ${ref.tasks}!',
-                ),
-          ),
+        body: Center(
+          child: ref.watch(repositoryInitializerProvider()).when(
+                error: (error, _) => Text(error.toString()),
+                loading: () => const CircularProgressIndicator(),
+                data: (_) => 'Hello from Flutter Data ${ref.tasks}!',
+              ),
         ),
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

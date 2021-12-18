@@ -2,52 +2,58 @@
 title: Deleting tasks
 weight: 40
 menu: tutorial
-draft: true
 ---
 
-There's stuff "User 1" just doesn't want to do!
+There's stuff we just don't want to do!
 
-We can delete a `Todo` on dismiss by wrapping the text with a `Dismissible` and calling `todo.delete()`:
+We can delete a `Task` on dismiss by wrapping the tile with a `Dismissible` and calling its `delete` method:
 
-```dart {hl_lines=["13-25"]}
-class TodoList extends StatelessWidget {
-  final DataState<List<Todo>> state;
-  const TodoList(this.state, {Key key}) : super(key: key);
-
+```dart {hl_lines=["23-26"]}
+class TasksScreen extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.tasks.watchAll(params: {'_limit': 5}, syncLocal: true);
+    final _newTaskController = useTextEditingController();
+
     if (state.isLoading) {
-      return Center(child: const CircularProgressIndicator());
+      return CircularProgressIndicator();
     }
-    return ListView.separated(
-      itemBuilder: (context, i) {
-        final todo = state.model[i];
-        return Dismissible(
-          child: Text(
-              '${todo.completed ? "✅" : "◻️"} [id: ${todo.id}] ${todo.title}'),
-          key: ValueKey(todo),
-          direction: DismissDirection.endToStart,
-          background: Container(
-            color: Colors.red,
-            child: Icon(Icons.delete, color: Colors.white),
+    return RefreshIndicator(
+      onRefresh: () =>
+          ref.tasks.findAll(params: {'_limit': 5}, syncLocal: true),
+      child: ListView(
+        children: [
+          TextField(
+            controller: _newTaskController,
+            onSubmitted: (value) async {
+              Task(title: value).init(ref.read).save();
+              _newTaskController.clear();
+            },
           ),
-          onDismissed: (_) async {
-            await todo.delete();
-          },
-        );
-      },
-      itemCount: state.model.length,
-      separatorBuilder: (context, i) => Divider(),
-      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+          for (final task in state.model)
+            Dismissible(
+              key: ValueKey(task),
+              direction: DismissDirection.endToStart,
+              onDismissed: (_) => task.delete(),
+              child: ListTile(
+                leading: Checkbox(
+                  value: task.completed,
+                  onChanged: (value) => task.toggleCompleted().save(),
+                ),
+                title: Text('${task.title} [id: ${task.id}]'),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
 ```
 
-Hot-reload and swipe left...
+Hot-reload, swipe left and... they're gone!
 
-![](05a.png)
+{{< iphone "../w7.gif" >}}
 
-Done! (well, not really "done" 😄)
-
-![](05b.png)
+{{< notice >}}
+Remember to check out the debug console where you can find some Flutter Data activity logs.
+{{< /notice >}}

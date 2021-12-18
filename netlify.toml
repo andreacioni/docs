@@ -14,7 +14,7 @@ HUGO_ENABLEGITINFO = "true"
   force = true
 
 [[redirects]]
-  from = "https://flutterdata.dev/docs/"
+  from = "https://flutterdata.dev/tutorial/"
   to = "https://flutterdata.dev/tutorial/fetching"
   status = 301
   force = true

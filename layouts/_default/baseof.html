@@ -236,6 +236,53 @@
     [].forEach.call(document.querySelectorAll('a[href^="#"]'), element => {
       element.onclick = _close;
     });
+
+    //
+
+    window.domReady = function(callback) {
+      document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
+    };
+
+    window.domReady(function() {
+
+      // make links open in new window if external
+
+      var links = document.links,
+        regExp = new RegExp("//" + location.host + "($|/)");
+
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].href;
+        var isLocal = (href.substring(0,4) === "http") ? regExp.test(href) : true;
+        if (!isLocal) links[i].target = "_blank";
+      }
+
+    });
+
+    window.submitContact = function(form, isCTA) {
+      var url = "/";
+      
+      if (false) { // isCTA = false
+        url = "(signup url)";
+      }
+      
+      var data = new FormData(form);
+      data.set('url', window.location.href);
+
+      fetch(url, {
+        method: "POST",
+        mode: 'no-cors',
+        body: data
+      }).then(response => {
+        form.querySelector('.form-success').style.display = 'block';
+      }).catch(() => {
+        form.querySelector('.form-error').style.display = 'block';
+      }).finally(() => {
+        [].slice.call(form.querySelectorAll('.initial')).forEach(function(e) {
+          e.style.display = 'none';
+        });
+      });
+      return false;
+    }
   </script>
 </body>
 

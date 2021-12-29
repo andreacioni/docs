@@ -414,7 +414,7 @@ void main() {
 
 And yes, using `const` constructors can improve performance in Flutter applications.
 
-{{< middle-cta >}}
+{{< contact >}}
 
 ## Optional arguments always last!
 

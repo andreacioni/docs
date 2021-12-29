@@ -21,3 +21,5 @@ Adapters are applied on `RemoteAdapter` but Flutter Data will automatically crea
 ```dart
 final nextAppointment = await appointmentRepository.appointmentAdapter.fetchNext();
 ```
+
+{{< contact >}}

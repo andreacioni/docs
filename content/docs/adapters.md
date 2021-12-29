@@ -92,7 +92,7 @@ class User with DataModel<User> {
 **Important**: As the repository is generated, any change in the list of adapters **must** be followed by a build in order to take effect.
 
 ```bash
-flutter packages pub run build_runner build
+flutter pub run build_runner build
 ```
 
 Trouble generating code? [See here](/cookbook/#errors-generating-code).
@@ -185,3 +185,5 @@ FutureOr<R?> sendRequest<R>(
 With all these building blocks adapters for Wordpress or Github REST access, or even JWT authentication are easy to build.
 
 **Many more adapter examples can be found perusing the [articles](/articles).**
+
+{{< contact >}}

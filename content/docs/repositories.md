@@ -259,6 +259,8 @@ Clients will only interact with providers and repositories, while using the [Ada
 
 `LocalAdapter`, `GraphNotifier` and the usage of `Hive` are internal concerns. Do not use `LocalAdapter`s for local storage capabilities; these are all exposed via the `Repository` and `RemoteAdapter` APIs.
 
+{{< contact >}}
+
 {{< internal >}}
 GRAPHVIZ
 

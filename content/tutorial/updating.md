@@ -106,3 +106,5 @@ Remember to check out the debug console where you can find some Flutter Data act
 {{< /notice >}}
 
 **NEXT: [Creating a new task](/tutorial/creating)**
+
+{{< contact >}}

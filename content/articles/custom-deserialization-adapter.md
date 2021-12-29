@@ -25,3 +25,5 @@ final token = await userRepository.authAdapter.login('e@mail, p*ssword');
 ```
 
 Also see [JSONAPIAdapter](https://github.com/flutterdata/flutter_data_json_api_adapter/) for inspiration.
+
+{{< contact >}}

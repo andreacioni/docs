@@ -26,3 +26,5 @@ mixin BaseAdapter<T extends DataModel<T>> on RemoteAdapter<T> {
   }
 }
 ```
+
+{{< contact >}}

@@ -37,3 +37,5 @@ mixin HttpProxyAdapter<T extends DataModel<T>> on RemoteAdapter<T> {
   }
 }
 ```
+
+{{< contact >}}

@@ -437,7 +437,7 @@ main() {
 }
 ```
 
-{{< middle-cta >}}
+{{< contact >}}
 
 ## Imports and exports
 

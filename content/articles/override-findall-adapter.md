@@ -20,3 +20,5 @@ mixin FindAllAdapter<T extends DataModel<T>> on RemoteAdapter<T> {
   }
 }
 ```
+
+{{< contact >}}

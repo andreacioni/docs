@@ -132,3 +132,5 @@ class Staff extends User<Staff> {
   Staff({String id, String name, this.xyz}) : super(id: id, name: name);
 }
 ```
+
+{{< contact >}}

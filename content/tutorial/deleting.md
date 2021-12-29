@@ -57,3 +57,5 @@ Hot-reload, swipe left and... they're gone!
 {{< notice >}}
 Remember to check out the debug console where you can find some Flutter Data activity logs.
 {{< /notice >}}
+
+{{< contact >}}

@@ -55,7 +55,7 @@ Ready! Now import this file in both `User` and `Todo` models.
 Time to run code generation and get a brand-new `Repository<User>`:
 
 ```
-flutter packages pub run build_runner build
+flutter pub run build_runner build
 ```
 
 Great. We are now going to request the API, via `watchOne()`, to embed the related `Todo` models:
@@ -155,3 +155,5 @@ And it works both ways now!
 {{< notice >}}
 **Check out the source code: https://github.com/flutterdata/tutorial**
 {{< /notice >}}
+
+{{< contact >}}

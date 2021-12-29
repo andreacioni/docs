@@ -66,7 +66,7 @@ Let's start by the most common configuration: the base URL.
 ```dart
 mixin ApplicationAdapter<T extends DataModel<T>> on RemoteAdapter<T> {
   @override
-  String get baseUrl => "https://my-json-server.typicode.com/flutterdata/demo/";
+  String get baseUrl => 'https://my-json-server.typicode.com/flutterdata/demo/';
 }
 ```
 
@@ -109,7 +109,7 @@ Notice two things about our model above:
 We are now ready to run a build:
 
 ```bash
-flutter packages pub run build_runner build
+flutter pub run build_runner build
 ```
 
 Flutter Data auto-generated a `Repository` class for `Task`.

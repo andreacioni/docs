@@ -161,3 +161,5 @@ Widget build(context) {
 Does this mean `callAsyncFetch()` will be called many times?
 
 In this small example, there is no reason for the parent to rebuild (nothing changes) but _in general_ you should assume it does. See [Why is my Future/Async Called Multiple Times?](/articles/future-async-called-multiple-times).
+
+{{< contact >}}

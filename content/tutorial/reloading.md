@@ -109,3 +109,5 @@ A similar method can be used to [fully re-initialize Flutter Data](/articles/how
 {{< /notice >}}
 
 **NEXT: [Deleting tasks](/tutorial/deleting)**
+
+{{< contact >}}

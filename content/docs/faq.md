@@ -48,3 +48,5 @@ It does depend on [Riverpod](https://pub.dev/packages/riverpod) but this library
 
 - in `*.g.dart` files (part of your models)
 - in `main.data.dart` (as a library)
+
+{{< contact >}}

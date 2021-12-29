@@ -36,3 +36,5 @@ No need to define a separate interface, just use regular or abstract classes!
 {{< notice >}}
 Want to know EVERYTHING about Dart constructors? Check out [Deconstructing Dart Constructors](/articles/deconstructing-dart-constructors)!
 {{< /notice >}}
+
+{{< contact >}}

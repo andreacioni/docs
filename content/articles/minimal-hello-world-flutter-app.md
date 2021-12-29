@@ -127,3 +127,5 @@ class MyApp extends HookWidget {
 ```
 
 It uses [hooks](https://pub.dev/packages/flutter_hooks) which remove the boilerplate of a classic `StatefulWidget`. Make sure you add the `flutter_hooks` dependency to `pubspec.yaml`!
+
+{{< contact >}}

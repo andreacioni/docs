@@ -93,3 +93,5 @@ List<SingleChildWidget> providers(
 ```
 
 See this in action with the [Flutter Data setup app](https://github.com/flutterdata/flutter_data_setup_app)!
+
+{{< contact >}}

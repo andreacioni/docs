@@ -20,3 +20,5 @@ mixin UserURLAdapter<T extends DataModel<T>> on RemoteAdapter<T> {
   String get baseUrl => 'https://my-json-server.typicode.com/flutterdata/demo';
 }
 ```
+
+{{< contact >}}

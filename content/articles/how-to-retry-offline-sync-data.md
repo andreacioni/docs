@@ -46,6 +46,8 @@ final _dispose = notifier.throttle(() {
   // check offline operations for all these types
   // types is now a List<Set<String>> because of the throttle
 
+  types = types.expand((e) => e).toSet();
+
   if (types.isNotEmpty) {
     for (final type in types) {
       final provider = repositoryProviders[type];

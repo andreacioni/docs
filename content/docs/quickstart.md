@@ -15,14 +15,14 @@ dependencies:
 
   # Highly RECOMMENDED (but not required) packages
   path_provider: ^2.0.7
-  json_annotation: 4.3.0
+  json_annotation: ^4.4.0
   flutter_riverpod: ^1.0.0
 
 dev_dependencies:
-  build_runner: ^1.10.1 # REQUIRED! Please use versions >= 1.10.1
+  build_runner: ^2.0.4 # REQUIRED!
 
   # Highly RECOMMENDED (but not required) packages
-  json_serializable: ^6.0.1
+  json_serializable: ^6.1.4
 ```
 
 Flutter Data doesn't require any library besides `build_runner` for code generation.

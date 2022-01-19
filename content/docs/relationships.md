@@ -87,54 +87,12 @@ class Task with DataModel<Task> {
   final int? id;
   final String title;
   final bool completed;
-  final BelongsTo<User>? user;
+  late final BelongsTo<User> user;
 
   Task({this.id, required this.title, this.completed = false, BelongsTo<User>? user}) :
     user = user ?? BelongsTo();
 }
 ```
-
-Since relationships don't have `const` constructors, we can't do this:
-
-```dart {hl_lines=[10 11]}
-@JsonSerializable()
-@DataRepository([JSONServerAdapter])
-class Task with DataModel<Task> {
-  @override
-  final int? id;
-  final String title;
-  final bool completed;
-  final BelongsTo<User> user;
-
-  Task({this.id, required this.title, this.completed = false, BelongsTo<User> user = const BelongsTo()}); // DOES NOT WORK
-}
-```
-
-(It would be more succint and since the `user` field is non-nullable we wouldn't have to use the `!` operator as in `task.user!.value!`.)
-
-But we can get somewhat closer and use an internal `late final` in order to keep the field non-nullable:
-
-```dart
-@JsonSerializable()
-@DataRepository([JSONServerAdapter])
-class Task with DataModel<Task> {
-  @override
-  final int? id;
-  final String title;
-  final bool completed;
-  late final BelongsTo<User> _user;
-  BelongsTo<User> get user => _user;
-
-  Task({
-    this.id,
-    required this.title,
-    this.completed = false,
-    BelongsTo<User>? user,
-  }) : _user = user ?? BelongsTo();
-}
-```
-
-The downside to this approach is we can't use `@JsonKey` on a private field (`_user`).
 
 ## Inverses
 
